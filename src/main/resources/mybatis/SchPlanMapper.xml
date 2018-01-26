@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.SchPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.SchPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="plan_id" property="planId" jdbcType="CHAR" />
+    <result column="plan_type" property="planType" jdbcType="CHAR" />
+    <result column="plan_name" property="planName" jdbcType="VARCHAR" />
+    <result column="plan_level" property="planLevel" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="plan_param" property="planParam" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from sch_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.SchPlan" >
+    insert into sch_plan (id, plan_id, plan_type, 
+      plan_name, plan_level, create_time, 
+      update_time, plan_param)
+    values (#{id,jdbcType=INTEGER}, #{planId,jdbcType=CHAR}, #{planType,jdbcType=CHAR}, 
+      #{planName,jdbcType=VARCHAR}, #{planLevel,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{planParam,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.entity.SchPlan" >
+    update sch_plan
+    set plan_id = #{planId,jdbcType=CHAR},
+    plan_type = #{planType,jdbcType=CHAR},
+      plan_name = #{planName,jdbcType=VARCHAR},
+      plan_level = #{planLevel,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      plan_param = #{planParam,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select id, plan_id, plan_type, plan_name, plan_level, create_time, update_time, plan_param
+    from sch_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, plan_id, plan_type, plan_name, plan_level, create_time, update_time, plan_param
+    from sch_plan
+  </select>
+</mapper>

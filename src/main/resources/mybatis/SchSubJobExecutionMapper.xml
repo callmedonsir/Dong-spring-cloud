@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.SchSubJobExecutionMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.SchSubJobExecution" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="job_exe_id" property="jobExeId" jdbcType="CHAR" />
+    <result column="sub_job_exe_id" property="subJobExeId" jdbcType="CHAR" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="job_level" property="jobLevel" jdbcType="TINYINT" />
+    <result column="job_service_name" property="jobServiceName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="elapsed_time" property="elapsedTime" jdbcType="TINYINT" />
+    <result column="job_node_ip" property="jobNodeIp" jdbcType="VARCHAR" />
+    <result column="job_instance_id" property="jobInstanceId" jdbcType="VARCHAR" />
+    <result column="job_node_port" property="jobNodePort" jdbcType="TINYINT" />
+    <result column="retry_seq" property="retrySeq" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="job_exe_param" property="jobExeParam" jdbcType="LONGVARCHAR" />
+    <result column="job_exe_message" property="jobExeMessage" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from sch_sub_job_execution
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.SchSubJobExecution" >
+    insert into sch_sub_job_execution (id, job_exe_id, sub_job_exe_id, 
+      job_name, job_level, job_service_name, 
+      status, start_time, end_time, 
+      elapsed_time, job_node_ip, job_instance_id, 
+      job_node_port, retry_seq, create_time, 
+      update_time, job_exe_param, job_exe_message
+      )
+    values (#{id,jdbcType=INTEGER}, #{jobExeId,jdbcType=CHAR}, #{subJobExeId,jdbcType=CHAR}, 
+      #{jobName,jdbcType=VARCHAR}, #{jobLevel,jdbcType=TINYINT}, #{jobServiceName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{elapsedTime,jdbcType=TINYINT}, #{jobNodeIp,jdbcType=VARCHAR}, #{jobInstanceId,jdbcType=VARCHAR}, 
+      #{jobNodePort,jdbcType=TINYINT}, #{retrySeq,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{jobExeParam,jdbcType=LONGVARCHAR}, #{jobExeMessage,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.entity.SchSubJobExecution" >
+    update sch_sub_job_execution
+    set job_exe_id = #{jobExeId,jdbcType=CHAR},
+    sub_job_exe_id = #{subJobExeId,jdbcType=CHAR},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      job_level = #{jobLevel,jdbcType=TINYINT},
+      job_service_name = #{jobServiceName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      elapsed_time = #{elapsedTime,jdbcType=TINYINT},
+      job_node_ip = #{jobNodeIp,jdbcType=VARCHAR},
+      job_instance_id = #{jobInstanceId,jdbcType=VARCHAR},
+      job_node_port = #{jobNodePort,jdbcType=TINYINT},
+      retry_seq = #{retrySeq,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      job_exe_param = #{jobExeParam,jdbcType=LONGVARCHAR},
+      job_exe_message = #{jobExeMessage,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select id, job_exe_id, sub_job_exe_id, job_name, job_level, job_service_name, status, 
+    start_time, end_time, elapsed_time, job_node_ip, job_instance_id, job_node_port, 
+    retry_seq, create_time, update_time, job_exe_param, job_exe_message
+    from sch_sub_job_execution
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, job_exe_id, sub_job_exe_id, job_name, job_level, job_service_name, status, 
+    start_time, end_time, elapsed_time, job_node_ip, job_instance_id, job_node_port, 
+    retry_seq, create_time, update_time, job_exe_param, job_exe_message
+    from sch_sub_job_execution
+  </select>
+</mapper>

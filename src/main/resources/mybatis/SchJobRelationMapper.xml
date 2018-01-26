@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.SchJobRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.SchJobRelation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="plan_type" property="planType" jdbcType="CHAR" />
+    <result column="job_id" property="jobId" jdbcType="VARCHAR" />
+    <result column="pre_job_id" property="preJobId" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sch_job_relation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.SchJobRelation" >
+    insert into sch_job_relation (id, plan_type, job_id, 
+      pre_job_id, is_deleted, create_time, 
+      update_time, update_by)
+    values (#{id,jdbcType=INTEGER}, #{planType,jdbcType=CHAR}, #{jobId,jdbcType=VARCHAR}, 
+      #{preJobId,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.entity.SchJobRelation" >
+    update sch_job_relation
+    set plan_type = #{planType,jdbcType=CHAR},
+      job_id = #{jobId,jdbcType=VARCHAR},
+      pre_job_id = #{preJobId,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, plan_type, job_id, pre_job_id, is_deleted, create_time, update_time, update_by
+    from sch_job_relation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, plan_type, job_id, pre_job_id, is_deleted, create_time, update_time, update_by
+    from sch_job_relation
+  </select>
+</mapper>

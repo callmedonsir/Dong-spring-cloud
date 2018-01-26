@@ -1,0 +1,5 @@
+com\Swagger2.class
+com\controller\HelloController.class
+com\controller\UserController.class
+com\entity\User.class
+com\DemoApplication.class

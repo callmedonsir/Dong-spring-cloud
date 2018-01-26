@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.SchPlanExecutionMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.SchPlanExecution" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="plan_id" property="planId" jdbcType="CHAR" />
+    <result column="plan_exe_id" property="planExeId" jdbcType="CHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="is_retry" property="isRetry" jdbcType="BIT" />
+    <result column="old_plan_id" property="oldPlanId" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from sch_plan_execution
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.SchPlanExecution" >
+    insert into sch_plan_execution (id, plan_id, plan_exe_id, 
+      start_time, end_time, status, 
+      is_retry, old_plan_id, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{planId,jdbcType=CHAR}, #{planExeId,jdbcType=CHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}, 
+      #{isRetry,jdbcType=BIT}, #{oldPlanId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.entity.SchPlanExecution" >
+    update sch_plan_execution
+    set plan_id = #{planId,jdbcType=CHAR},
+    plan_exe_id = #{planExeId,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      is_retry = #{isRetry,jdbcType=BIT},
+      old_plan_id = #{oldPlanId,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select id, plan_id, plan_exe_id, start_time, end_time, status, is_retry, old_plan_id, 
+    create_time, update_time
+    from sch_plan_execution
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, plan_id, plan_exe_id, start_time, end_time, status, is_retry, old_plan_id, 
+    create_time, update_time
+    from sch_plan_execution
+  </select>
+</mapper>
